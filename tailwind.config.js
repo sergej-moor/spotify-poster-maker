@@ -8,8 +8,12 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				sans: ['HostGrotesk', 'sans-serif']
+			}
+		}
 	},
 
-	plugins: [typography, forms, containerQueries, aspectRatio]
+	plugins: [require('daisyui'), typography, forms, containerQueries, aspectRatio]
 };
