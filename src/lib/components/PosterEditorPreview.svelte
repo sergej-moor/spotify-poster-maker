@@ -13,6 +13,7 @@
 	function updateScale() {
 		if (container) {
 			const containerWidth = container.parentElement?.clientWidth || window.innerWidth;
+
 			posterScaling = containerWidth / size.x;
 		}
 	}

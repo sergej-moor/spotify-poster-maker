@@ -1,6 +1,6 @@
 <script>
 	import { DiscAlbum } from 'lucide-svelte';
-	import '../app.css';
+	import '../../app.css';
 	let { children } = $props();
 	import Search from 'lucide-svelte/icons/search';
 </script>
