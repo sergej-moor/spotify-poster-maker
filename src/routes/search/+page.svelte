@@ -8,11 +8,54 @@
 	/** @type {string} */
 	let query = '';
 	/** @type {import('$lib/types/spotify').SpotifyAlbum[]} */
-	let albumResults = [];
+	let allAlbums = [];
+	/** @type {import('$lib/types/spotify').SpotifyAlbum[]} */
+	let visibleAlbums = [];
 	/** @type {boolean} */
 	let isSearching = false;
 	/** @type {'grid' | 'list'} */
 	let viewMode = 'list';
+	/** @type {HTMLElement | null} */
+	let loadMoreTrigger;
+	const ITEMS_PER_PAGE = 6;
+	let currentPage = 1;
+
+	/** @type {IntersectionObserver | null} */
+	let observer = null;
+
+	function loadMoreAlbums() {
+		const start = 0;
+		const end = currentPage * ITEMS_PER_PAGE;
+		visibleAlbums = allAlbums.slice(start, end);
+	}
+
+	function setupObserver() {
+		observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting && visibleAlbums.length < allAlbums.length) {
+						currentPage++;
+						loadMoreAlbums();
+					}
+				});
+			},
+			{
+				root: null,
+				rootMargin: '100px',
+				threshold: 0.1
+			}
+		);
+	}
+
+	function attachObserver() {
+		if (loadMoreTrigger && observer) {
+			observer.observe(loadMoreTrigger);
+		}
+	}
+
+	$: if (loadMoreTrigger) {
+		attachObserver();
+	}
 
 	/**
 	 * Search for albums using the Spotify API
@@ -20,22 +63,24 @@
 	 * @returns {Promise<void>}
 	 */
 	async function searchAlbums(searchQuery) {
-		if (!searchQuery) return;
+		if (!searchQuery) {
+			allAlbums = shuffleArray(featuredAlbums);
+			currentPage = 1;
+			loadMoreAlbums();
+			return;
+		}
 
 		isSearching = true;
-		albumResults = [];
-
 		try {
 			const res = await fetch(`/api/spotify/search?query=${encodeURIComponent(searchQuery)}`);
 			if (res.ok) {
 				/** @type {{ albums: { items: import('$lib/types/spotify').SpotifyAlbum[] }}} */
 				const data = await res.json();
-				albumResults = data.albums.items.filter(
+				allAlbums = data.albums.items.filter(
 					(album) => album.total_tracks > 1 && album.total_tracks <= 50
 				);
-				console.log(albumResults);
-			} else {
-				console.error('Failed to fetch search results');
+				currentPage = 1;
+				loadMoreAlbums();
 			}
 		} catch (error) {
 			console.error('Search error:', error);
@@ -54,11 +99,16 @@
 		}
 	}
 
-	/** @type {import('$lib/types/spotify').SpotifyAlbum[]} */
-	let shuffledAlbums = [];
-
 	onMount(() => {
-		shuffledAlbums = shuffleArray(featuredAlbums);
+		allAlbums = shuffleArray(featuredAlbums);
+		loadMoreAlbums();
+		setupObserver();
+
+		return () => {
+			if (observer) {
+				observer.disconnect();
+			}
+		};
 	});
 </script>
 
@@ -81,8 +131,8 @@
 	</div>
 </div>
 <div class="my-2 flex justify-between">
-	{#if !isSearching && albumResults.length > 0}
-		<div>{albumResults.length} results</div>
+	{#if !isSearching && allAlbums.length > 0}
+		<div>{allAlbums.length} results</div>
 	{/if}
 	<div></div>
 	<div class="flex gap-2">
@@ -105,35 +155,30 @@
 	{#if isSearching}
 		<p>Loading results...</p>
 		<div class="flex h-96 w-full items-center justify-center">
-			<span class="loading loading-spinner loading-lg"></span>
+			<span class="loading loading-spinner loading-lg" />
 		</div>
-	{:else if albumResults.length > 0}
-		<h2 class="mb-4 text-2xl font-bold">Search results</h2>
-		<ul
-			class="grid w-full gap-4 {viewMode === 'list'
-				? 'w-full grid-cols-1'
-				: 'grid-cols-2  sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6'}"
-		>
-			{#each albumResults as album (album.id)}
-				<li>
-					<PosterSearchResult {album} {viewMode} />
-				</li>
-			{/each}
-		</ul>
 	{:else}
 		<div class="space-y-8">
-			<h2 class="mb-4 text-2xl font-bold">Featured albums</h2>
+			<h2 class="mb-4 text-2xl font-bold">
+				{query ? 'Search results' : 'Featured albums'}
+			</h2>
 			<ul
 				class="grid w-full gap-4 {viewMode === 'list'
 					? 'w-full grid-cols-1'
 					: 'grid-cols-2  sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6'}"
 			>
-				{#each shuffledAlbums as album (album.id)}
+				{#each visibleAlbums as album (album.id)}
 					<li>
 						<PosterSearchResult {album} {viewMode} />
 					</li>
 				{/each}
 			</ul>
+
+			{#if visibleAlbums.length < allAlbums.length}
+				<div bind:this={loadMoreTrigger} class="mt-8 flex h-20 w-full items-center justify-center">
+					<span class="loading loading-spinner loading-md" />
+				</div>
+			{/if}
 		</div>
 	{/if}
 </div>
