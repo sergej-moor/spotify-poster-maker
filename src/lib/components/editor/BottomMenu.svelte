@@ -1,5 +1,7 @@
 <script>
-	import { Disc3, ListMusic, Palette } from 'lucide-svelte';
+	import AlbumDrawer from './AlbumDrawer.svelte';
+	import TracksDrawer from './TracksDrawer.svelte';
+	import PaletteDrawer from './PaletteDrawer.svelte';
 
 	/** @type {'album' | 'tracks' | 'palette'} */
 	let activeTab = 'tracks';
@@ -10,16 +12,7 @@
 </script>
 
 <div class="btm-nav md:hidden">
-	<button class={activeTab === 'album' ? 'active' : ''} on:click={() => setActiveTab('album')}>
-		<Disc3 />
-		<span class="btm-nav-label">Album</span>
-	</button>
-	<button class={activeTab === 'tracks' ? 'active' : ''} on:click={() => setActiveTab('tracks')}>
-		<ListMusic />
-		<span class="btm-nav-label">Tracks</span>
-	</button>
-	<button class={activeTab === 'palette' ? 'active' : ''} on:click={() => setActiveTab('palette')}>
-		<Palette />
-		<span class="btm-nav-label">Palette</span>
-	</button>
+	<AlbumDrawer isActive={activeTab === 'album'} on:click={() => setActiveTab('album')} />
+	<TracksDrawer isActive={activeTab === 'tracks'} on:click={() => setActiveTab('tracks')} />
+	<PaletteDrawer isActive={activeTab === 'palette'} on:click={() => setActiveTab('palette')} />
 </div>
