@@ -1,6 +1,6 @@
 <script>
 	import { Search } from 'lucide-svelte';
-	import PosterSearchResult from '$lib/components/PosterSearchResult.svelte';
+	import PosterSearchResult from '../../lib/components/PosterSearchResult.svelte';
 	let query = 'bob marley';
 	let albumResults = [];
 	let isSearching = false;

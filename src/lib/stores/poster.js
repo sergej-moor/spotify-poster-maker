@@ -2,49 +2,12 @@ import { writable } from 'svelte/store';
 import ColorThief from 'colorthief';
 
 /**
- * @typedef {Object} ColorTheme
- * @property {string} name
- * @property {string} background
- * @property {string} foreground
- */
-
-/**
- * @typedef {Object} Dimensions
- * @property {number} x
- * @property {number} y
- */
-
-/**
- * @typedef {Object} Track
- * @property {string} name
- * @property {number} duration_ms
- * @property {boolean} visible
- */
-
-/**
- * @typedef {Object} PosterData
- * @property {string} cover
- * @property {string} title
- * @property {string} artist
- * @property {string} releaseDate
- * @property {Track[]} tracks
- * @property {string} totalDuration
- * @property {string} releaseYear
- * @property {string} genre
- * @property {string} spotifyCode
- * @property {string} albumId
- * @property {string[]} [colors]
- * @property {string} backgroundColor
- * @property {string} foregroundColor
- */
-
-/**
  * @typedef {Object} PosterStore
- * @property {PosterData} posterData
- * @property {Dimensions} size
+ * @property {import('$lib/types/poster').PosterData} posterData
+ * @property {import('$lib/types/poster').Dimensions} size
  */
 
-/** @type {ColorTheme[]} */
+/** @type {import('$lib/types/poster').ColorTheme[]} */
 const DEFAULT_THEMES = [
 	{ name: 'Classic', background: '#FFFFFF', foreground: '#000000' },
 	{ name: 'Dark', background: '#000000', foreground: '#FFFFFF' },
@@ -79,7 +42,7 @@ const DEFAULT_STORE_STATE = {
 };
 
 /**
- * @param {Track[]} tracks
+ * @param {import('$lib/types/poster').Track[]} tracks
  * @returns {string}
  */
 function getTotalDuration(tracks) {
@@ -282,7 +245,7 @@ function createPosterStore() {
 			selectedTheme = null;
 		},
 		/**
-		 * @param {Partial<PosterData>} updates
+		 * @param {Partial<import('$lib/types/poster').PosterData>} updates
 		 */
 		updatePosterData: async (updates) => {
 			update((store) => {

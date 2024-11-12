@@ -27,14 +27,14 @@ export function measureTextWidth(text, fontSize, font = 'Oswald') {
  * @param {number} maxWidth - maximum width in pixels
  * @returns {TitleLayout}
  */
-export function calculateTitleLayout(title) {
+export function calculateTitleLayout(title, maxWidth = 1650) {
 	if (!title) {
 		return { fontSize: 9, isTwoLines: false, formattedText: '' };
 	}
 
 	const width = measureTextWidth(title, 9);
 
-	if (width > 1650) {
+	if (width > maxWidth) {
 		// Split into two lines
 		const words = title.split(' ');
 		const halfLength = Math.ceil(words.length / 2);

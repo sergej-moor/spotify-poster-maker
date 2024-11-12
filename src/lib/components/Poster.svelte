@@ -10,7 +10,7 @@
 	export let height;
 	/** @type {boolean} */
 	export let isPlaceholder = false;
-	/** @type {import('$lib/stores/poster').PosterData | undefined} */
+	/** @type {import('$lib/types/poster').PosterData | undefined} */
 	export let data = undefined;
 
 	// Use store data if no direct data is provided

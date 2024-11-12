@@ -3,17 +3,9 @@
 	import Poster from './Poster.svelte';
 	import { onMount } from 'svelte';
 	import { extractColors, getTintedSpotifyCode, posterStore } from '$lib/stores/poster';
+	import { sanitizeTitle } from '$lib/utils/sanitizers/titleSanitizer';
 
-	/**
-	 * @typedef {Object} SpotifyAlbum
-	 * @property {string} id
-	 * @property {string} name
-	 * @property {Array<{url: string}>} images
-	 * @property {Array<{name: string}>} artists
-	 * @property {string} release_date
-	 * @property {number} total_tracks
-	 */
-	/** @type {SpotifyAlbum} */
+	/** @type {import('$lib/types/spotify').SpotifyAlbum} */
 	export let album;
 
 	// Get themes from the poster store
@@ -51,7 +43,7 @@
 			// Create preview data with placeholder values
 			previewData = {
 				cover: album.images[0]?.url || '',
-				title: album.name || '',
+				title: sanitizeTitle(album.name) || '',
 				artist: album.artists[0]?.name || '',
 				releaseDate: album.release_date || '',
 				tracks: generatePlaceholderTracks(album.total_tracks),

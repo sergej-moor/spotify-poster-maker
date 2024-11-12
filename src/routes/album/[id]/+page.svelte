@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { posterStore } from '$lib/stores/poster';
-	import Poster from '../../../lib/components/Poster.svelte';
+
 	import PosterEditorPreview from '$lib/components/PosterEditorPreview.svelte';
 
 	export let data;

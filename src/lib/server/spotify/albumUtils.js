@@ -3,30 +3,9 @@ import { sanitizeTrackNames } from '$lib/utils';
 import { sanitizeTitle } from '$lib/utils';
 
 /**
- * @typedef {Object} Track
- * @property {string} name
- * @property {number} [duration_ms]
- */
-
-/**
- * @typedef {Object} Artist
- * @property {string} id
- * @property {string} name
- */
-
-/**
- * @typedef {Object} Album
- * @property {string} name
- * @property {Artist[]} artists
- * @property {Object} [tracks]
- * @property {Track[]} [tracks.items]
- * @property {string[]} [genres]
- */
-
-/**
  * Enriches album data with sanitized titles and additional artist information
- * @param {Album} album - The album object from Spotify API
- * @returns {Promise<Album>} - The enriched album object
+ * @param {import('$lib/types/spotify').SpotifyAlbum} album - The album object from Spotify API
+ * @returns {Promise<import('$lib/types/spotify').SpotifyAlbum>} - The enriched album object
  */
 export async function enrichAlbumData(album) {
 	try {
