@@ -12,7 +12,8 @@
 		"lint": "prettier --check . && eslint .",
 		"test:e2e": "playwright test",
 		"test": "npm run test:e2e && npm run test:unit -- --run",
-		"test:unit": "vitest"
+		"test:unit": "vitest",
+		"generate:featured-albums": "node scripts/getFeaturedAlbums.mjs"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.45.3",
@@ -43,6 +44,7 @@
 	"dependencies": {
 		"axios": "^1.7.7",
 		"colorthief": "^2.6.0",
+		"dotenv": "^16.4.5",
 		"lucide-svelte": "^0.456.0"
 	}
 }

@@ -1,49 +1,18 @@
 <script>
 	import { Search, Grid, List } from 'lucide-svelte';
 	import PosterSearchResult from '$lib/components/PosterSearchResult.svelte';
+	import { featuredAlbums } from '$lib/data/featuredAlbums';
+	import { shuffleArray } from '$lib/utils';
+	import { onMount } from 'svelte';
 
 	/** @type {string} */
-	let query = 'bob marley';
+	let query = '';
 	/** @type {import('$lib/types/spotify').SpotifyAlbum[]} */
 	let albumResults = [];
 	/** @type {boolean} */
 	let isSearching = false;
 	/** @type {'grid' | 'list'} */
 	let viewMode = 'list';
-
-	/** @type {string[]} */
-	const defaultSearches = [
-		'The Doors',
-		'Tame Impala',
-		'Pink Floyd',
-		'Bob Marley',
-		'Kendrick Lamar',
-		'David Bowie',
-		'Queen',
-		'Miles Davis',
-		'Radiohead',
-		'Nina Simone',
-		'Bad Bunny',
-		'BTS',
-		'Björk',
-		'Prince',
-		'Stevie Wonder',
-		'Daft Punk',
-		'Beyoncé',
-		'The Beatles',
-		'Nirvana',
-		'Bob Dylan',
-		'Frank Ocean',
-		'ABBA',
-		'Santana',
-		'Led Zeppelin',
-		'Fleetwood Mac',
-		'Michael Jackson',
-		'Aretha Franklin',
-		'Coldplay',
-		'Jay-Z',
-		'Red Hot Chili Peppers'
-	];
 
 	/**
 	 * Search for albums using the Spotify API
@@ -84,6 +53,13 @@
 			searchAlbums(query);
 		}
 	}
+
+	/** @type {import('$lib/types/spotify').SpotifyAlbum[]} */
+	let shuffledAlbums = [];
+
+	onMount(() => {
+		shuffledAlbums = shuffleArray(featuredAlbums);
+	});
 </script>
 
 <h1 class="text-4xl font-bold">Album search</h1>
@@ -105,7 +81,10 @@
 	</div>
 </div>
 <div class="my-2 flex justify-between">
-	<div>{albumResults.length} results</div>
+	{#if !isSearching && albumResults.length > 0}
+		<div>{albumResults.length} results</div>
+	{/if}
+	<div></div>
 	<div class="flex gap-2">
 		<button
 			class="btn btn-circle btn-sm {viewMode === 'grid' ? 'btn-active' : ''}"
@@ -129,8 +108,7 @@
 			<span class="loading loading-spinner loading-lg"></span>
 		</div>
 	{:else if albumResults.length > 0}
-		<h2>Search results</h2>
-
+		<h2 class="mb-4 text-2xl font-bold">Search results</h2>
 		<ul
 			class="grid w-full gap-4 {viewMode === 'list'
 				? 'w-full grid-cols-1'
@@ -143,6 +121,19 @@
 			{/each}
 		</ul>
 	{:else}
-		<p class="text-bold mt-4 text-3xl">no albums found :(</p>
+		<div class="space-y-8">
+			<h2 class="mb-4 text-2xl font-bold">Featured albums</h2>
+			<ul
+				class="grid w-full gap-4 {viewMode === 'list'
+					? 'w-full grid-cols-1'
+					: 'grid-cols-2  sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6'}"
+			>
+				{#each shuffledAlbums as album (album.id)}
+					<li>
+						<PosterSearchResult {album} {viewMode} />
+					</li>
+				{/each}
+			</ul>
+		</div>
 	{/if}
 </div>
