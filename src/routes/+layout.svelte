@@ -3,4 +3,8 @@
 	let { children } = $props();
 </script>
 
-{@render children()}
+<nav class="h-12"></nav>
+<div class="mx-4 my-2">
+	{@render children()}
+</div>
+<footer></footer>

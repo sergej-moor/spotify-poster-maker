@@ -14,6 +14,9 @@ export default {
 			}
 		}
 	},
+	daisyui: {
+		themes: ['cupcake']
+	},
 
 	plugins: [require('daisyui'), typography, forms, containerQueries, aspectRatio]
 };
