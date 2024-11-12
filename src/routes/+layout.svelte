@@ -1,4 +1,5 @@
 <script>
+	import { DiscAlbum } from 'lucide-svelte';
 	import '../app.css';
 	let { children } = $props();
 	import Search from 'lucide-svelte/icons/search';
@@ -26,4 +27,17 @@
 		{@render children()}
 	</div>
 </div>
-<footer></footer>
+<footer class=" items-center bg-neutral p-4 text-neutral-content md:px-8 lg:px-16">
+	<div class="footer mx-auto flex items-center justify-between lg:max-w-6xl">
+		<aside class="grid-flow-col items-center">
+			<a class="flex items-center gap-2 font-bold leading-[1]" href="/"
+				><DiscAlbum /> <!-- Your Album Poster -->
+			</a>
+			<p>Copyright © {new Date().getFullYear()} - No right reserved</p>
+		</aside>
+		<nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+			<a href="/imprint">Imprint</a>
+			<a href="/about">About</a>
+		</nav>
+	</div>
+</footer>
