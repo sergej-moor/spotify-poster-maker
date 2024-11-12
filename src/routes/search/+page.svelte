@@ -1,10 +1,17 @@
 <script>
-	import { Search } from 'lucide-svelte';
-	import PosterSearchResult from '../../lib/components/PosterSearchResult.svelte';
-	let query = 'bob marley';
-	let albumResults = [];
-	let isSearching = false;
+	import { Search, Grid, List } from 'lucide-svelte';
+	import PosterSearchResult from '$lib/components/PosterSearchResult.svelte';
 
+	/** @type {string} */
+	let query = 'bob marley';
+	/** @type {import('$lib/types/spotify').SpotifyAlbum[]} */
+	let albumResults = [];
+	/** @type {boolean} */
+	let isSearching = false;
+	/** @type {'grid' | 'list'} */
+	let viewMode = 'list';
+
+	/** @type {string[]} */
 	const defaultSearches = [
 		'The Doors',
 		'Tame Impala',
@@ -38,6 +45,11 @@
 		'Red Hot Chili Peppers'
 	];
 
+	/**
+	 * Search for albums using the Spotify API
+	 * @param {string} searchQuery - The search query to use
+	 * @returns {Promise<void>}
+	 */
 	async function searchAlbums(searchQuery) {
 		if (!searchQuery) return;
 
@@ -47,6 +59,7 @@
 		try {
 			const res = await fetch(`/api/spotify/search?query=${encodeURIComponent(searchQuery)}`);
 			if (res.ok) {
+				/** @type {{ albums: { items: import('$lib/types/spotify').SpotifyAlbum[] }}} */
 				const data = await res.json();
 				albumResults = data.albums.items.filter(
 					(album) => album.total_tracks > 1 && album.total_tracks <= 50
@@ -61,25 +74,53 @@
 			isSearching = false;
 		}
 	}
+
+	/**
+	 * Handle keydown event for search input
+	 * @param {KeyboardEvent} e
+	 */
+	function handleKeydown(e) {
+		if (e.key === 'Enter') {
+			searchAlbums(query);
+		}
+	}
 </script>
 
 <h1 class="text-4xl font-bold">Album search</h1>
 <p>Just one step away from your poster!</p>
-<div class=" flex items-center justify-between gap-2 border-b border-primary">
-	<input
-		bind:value={query}
-		type="text"
-		class="input grow focus:border-none focus:outline-none"
-		placeholder="Search an album"
-		on:keydown={(e) => e.key === 'Enter' && searchAlbums(query)}
-	/>
 
-	<button on:click={() => searchAlbums(query)} class="btn btn-circle btn-primary btn-sm">
-		<Search size={14}></Search>
-	</button>
+<div class="flex items-center justify-between gap-4">
+	<div class="flex flex-1 items-center justify-between gap-2 border-b border-primary">
+		<input
+			bind:value={query}
+			type="text"
+			class="input grow focus:border-none focus:outline-none"
+			placeholder="Search an album"
+			on:keydown={handleKeydown}
+		/>
+
+		<button on:click={() => searchAlbums(query)} class="btn btn-circle btn-primary btn-sm">
+			<Search size={14} />
+		</button>
+	</div>
 </div>
-
-<div>20 results</div>
+<div class="my-2 flex justify-between">
+	<div>{albumResults.length} results</div>
+	<div class="flex gap-2">
+		<button
+			class="btn btn-circle btn-sm {viewMode === 'grid' ? 'btn-active' : ''}"
+			on:click={() => (viewMode = 'grid')}
+		>
+			<Grid size={14} />
+		</button>
+		<button
+			class="btn btn-circle btn-sm {viewMode === 'list' ? 'btn-active' : ''}"
+			on:click={() => (viewMode = 'list')}
+		>
+			<List size={14} />
+		</button>
+	</div>
+</div>
 
 <div class="w-full">
 	{#if isSearching}
@@ -89,14 +130,19 @@
 		</div>
 	{:else if albumResults.length > 0}
 		<h2>Search results</h2>
-		<ul class="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6">
+
+		<ul
+			class="grid w-full gap-4 {viewMode === 'list'
+				? 'w-full grid-cols-1'
+				: 'grid-cols-2  sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6'}"
+		>
 			{#each albumResults as album (album.id)}
 				<li>
-					<PosterSearchResult {album} />
+					<PosterSearchResult {album} {viewMode} />
 				</li>
 			{/each}
 		</ul>
 	{:else}
-		<p>No results found</p>
+		<p class="text-bold mt-4 text-3xl">no albums found :(</p>
 	{/if}
 </div>

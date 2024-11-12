@@ -7,6 +7,8 @@
 
 	/** @type {import('$lib/types/spotify').SpotifyAlbum} */
 	export let album;
+	/** @type {'grid' | 'list'} */
+	export let viewMode;
 
 	// Get themes from the poster store
 	const themes = posterStore.getThemes();
@@ -32,6 +34,16 @@
 		}));
 	}
 
+	/**
+	 * Sanitize the album title
+	 * @param {string} title
+	 * @returns {string}
+	 */
+	function getSanitizedTitle(title) {
+		const { sanitized } = sanitizeTitle(title);
+		return sanitized;
+	}
+
 	async function initializePreviewData() {
 		try {
 			// Extract colors from album cover
@@ -43,7 +55,7 @@
 			// Create preview data with placeholder values
 			previewData = {
 				cover: album.images[0]?.url || '',
-				title: sanitizeTitle(album.name) || '',
+				title: getSanitizedTitle(album.name) || '',
 				artist: album.artists[0]?.name || '',
 				releaseDate: album.release_date || '',
 				tracks: generatePlaceholderTracks(album.total_tracks),
@@ -64,20 +76,31 @@
 	}
 
 	function updateScale() {
-		if (container) {
-			const containerWidth = container.parentElement?.clientWidth || window.innerWidth;
-			posterScaling = containerWidth / size.x;
-		}
+		// Push the calculation to the next event loop
+		setTimeout(() => {
+			if (container) {
+				const containerWidth = container.parentElement?.clientWidth || window.innerWidth;
+				posterScaling = containerWidth / size.x;
+			}
+		}, 0);
 	}
 
 	$: scaledWidth = Math.round(size.x * posterScaling);
 	$: scaledHeight = Math.round(size.y * posterScaling);
 
+	// Watch for viewMode changes and update scale
+	$: viewMode, updateScale();
+
 	onMount(() => {
 		initializePreviewData();
-		updateScale();
-		window.addEventListener('resize', updateScale);
-		return () => window.removeEventListener('resize', updateScale);
+		updateScale(); // Initial scale calculation
+
+		const handleResize = () => {
+			updateScale();
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
 	});
 
 	/**
