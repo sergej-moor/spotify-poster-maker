@@ -10,7 +10,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['HostGrotesk', 'sans-serif']
+				sans: ['HostGrotesk', 'sans-serif'],
+				oswald: ['Oswald', 'sans-serif']
 			}
 		}
 	},

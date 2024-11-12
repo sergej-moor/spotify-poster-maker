@@ -1,6 +1,5 @@
 <script>
 	import { Search } from 'lucide-svelte';
-	import Poster from '../../components/Poster.svelte';
 
 	let query = 'bob marley';
 	let albumResults = [];
@@ -62,17 +61,6 @@
 			isSearching = false;
 		}
 	}
-
-	/* 	async function searchAlbums(searchQuery) {
-		if (!searchQuery) return;
-
-		isSearching = true;
-		albumResults = [];
-
-		const response = await fetch(`/api/spotify/search?query=${encodeURIComponent(searchQuery)}`);
-		const data = await response.json();
-		albumResults = data.albums.items;
-	} */
 </script>
 
 <h1 class="text-4xl font-bold">Album search</h1>
@@ -107,6 +95,6 @@
 {/if}
 <ul class="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6">
 	{#each Array(20) as _, i}
-		<li><Poster key={i}></Poster></li>
+		<li>{i}</li>
 	{/each}
 </ul>
