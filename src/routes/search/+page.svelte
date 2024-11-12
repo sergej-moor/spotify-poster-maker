@@ -112,15 +112,15 @@
 	});
 </script>
 
-<h1 class="text-4xl font-bold">Album search</h1>
+<h1 class="mt-6 text-4xl font-bold">Album search</h1>
 <p>Just one step away from your poster!</p>
 
 <div class="flex items-center justify-between gap-4">
-	<div class="flex flex-1 items-center justify-between gap-2 border-b border-primary">
+	<div class="my-4 flex flex-1 items-center justify-between gap-2 border-b border-primary pb-1">
 		<input
 			bind:value={query}
 			type="text"
-			class="input grow focus:border-none focus:outline-none"
+			class="input my-1 h-fit grow p-0 text-lg focus:border-transparent focus:outline-none"
 			placeholder="Search an album"
 			on:keydown={handleKeydown}
 		/>
@@ -158,10 +158,7 @@
 			<span class="loading loading-spinner loading-lg" />
 		</div>
 	{:else}
-		<div class="space-y-8">
-			<h2 class="mb-4 text-2xl font-bold">
-				{query ? 'Search results' : 'Featured albums'}
-			</h2>
+		<div class="mt-6 space-y-8">
 			<ul
 				class="grid w-full gap-4 {viewMode === 'list'
 					? 'w-full grid-cols-1'
