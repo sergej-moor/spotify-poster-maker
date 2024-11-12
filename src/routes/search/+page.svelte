@@ -14,7 +14,7 @@
 	/** @type {boolean} */
 	let isSearching = false;
 	/** @type {'grid' | 'list'} */
-	let viewMode = 'list';
+	let viewMode = 'grid';
 	/** @type {HTMLElement | null} */
 	let loadMoreTrigger;
 	const ITEMS_PER_PAGE = 6;
@@ -133,9 +133,11 @@
 <div class="my-2 flex justify-between">
 	{#if !isSearching && allAlbums.length > 0}
 		<div>{allAlbums.length} results</div>
+	{:else}
+		<div></div>
 	{/if}
-	<div></div>
-	<div class="flex gap-2">
+
+	<div class="flex gap-2 sm:hidden">
 		<button
 			class="btn btn-circle btn-sm {viewMode === 'grid' ? 'btn-active' : ''}"
 			on:click={() => (viewMode = 'grid')}
@@ -161,8 +163,8 @@
 		<div class="mt-6 space-y-8">
 			<ul
 				class="grid w-full gap-4 {viewMode === 'list'
-					? 'w-full grid-cols-1'
-					: 'grid-cols-2  sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6'}"
+					? ' grid-cols-1 '
+					: 'grid-cols-2  sm:grid-cols-3  lg:grid-cols-4'}"
 			>
 				{#each visibleAlbums as album (album.id)}
 					<li>

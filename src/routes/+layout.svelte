@@ -14,7 +14,9 @@
 		<Search size={16}></Search>
 	</a>
 </nav>
-<div class="mx-4 my-2">
-	{@render children()}
+<div class="flex justify-center">
+	<div class="mx-4 my-2 grow md:mx-8 lg:mx-16 lg:my-16 lg:max-w-6xl">
+		{@render children()}
+	</div>
 </div>
 <footer></footer>
