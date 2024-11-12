@@ -3,7 +3,6 @@
  * @property {number} fontSize
  * @property {boolean} isTwoLines
  * @property {string} formattedText
- * @property {number} lineHeight
  */
 
 /**
@@ -30,12 +29,7 @@ export function measureTextWidth(text, fontSize, font = 'Oswald') {
  */
 export function calculateTitleLayout(title) {
 	if (!title) {
-		return {
-			fontSize: 9,
-			isTwoLines: false,
-			formattedText: '',
-			lineHeight: 1 // default line height
-		};
+		return { fontSize: 9, isTwoLines: false, formattedText: '' };
 	}
 
 	const width = measureTextWidth(title, 9);
@@ -54,15 +48,13 @@ export function calculateTitleLayout(title) {
 		return {
 			fontSize: 5.5,
 			isTwoLines: true,
-			formattedText,
-			lineHeight: 0.9 // tighter line height for two lines
+			formattedText
 		};
 	}
 
 	return {
 		fontSize: 9,
 		isTwoLines: false,
-		formattedText: title,
-		lineHeight: 1
+		formattedText: title
 	};
 }

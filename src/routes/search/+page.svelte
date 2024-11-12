@@ -1,6 +1,6 @@
 <script>
 	import { Search } from 'lucide-svelte';
-
+	import PosterSearchResult from '$lib/components/PosterSearchResult.svelte';
 	let query = 'bob marley';
 	let albumResults = [];
 	let isSearching = false;
@@ -80,21 +80,23 @@
 </div>
 
 <div>20 results</div>
-{#if albumResults.length > 0}
-	<ul>
-		{#each albumResults as album}
-			<li>
-				<img src={album.images[0]?.url} alt={album.name} width="100" />
-				<h3>{album.name}</h3>
-				<p>by {album.artists.map((a) => a.name).join(', ')}</p>
-			</li>
-		{/each}
-	</ul>
-{:else}
-	<p>No albums found</p>
-{/if}
-<ul class="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6">
-	{#each Array(20) as _, i}
-		<li>{i}</li>
-	{/each}
-</ul>
+
+<div class="w-full">
+	{#if isSearching}
+		<p>Loading results...</p>
+		<div class="flex h-96 w-full items-center justify-center">
+			<span class="loading loading-spinner loading-lg"></span>
+		</div>
+	{:else if albumResults.length > 0}
+		<h2>Search results</h2>
+		<ul class="grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-6">
+			{#each albumResults as album (album.id)}
+				<li>
+					<PosterSearchResult {album} />
+				</li>
+			{/each}
+		</ul>
+	{:else}
+		<p>No results found</p>
+	{/if}
+</div>
