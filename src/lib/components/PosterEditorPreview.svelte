@@ -13,13 +13,14 @@
 	function updateScale() {
 		if (container) {
 			const containerWidth = container.parentElement?.clientWidth || window.innerWidth;
-
+		
 			const availableHeight = $drawerOpen ? window.innerHeight * 0.3 : window.innerHeight * 0.9;
 
 			const widthScale = containerWidth / size.x;
 			const heightScale = availableHeight / size.y;
 
 			posterScaling = Math.min(widthScale, heightScale);
+	
 		}
 	}
 
@@ -40,19 +41,19 @@
 
 <div
 	bind:this={container}
-	class={` flex w-full items-start justify-center ${
+	class={` flex w-full items-start justify-center  ${
 		$drawerOpen ? 'h-[35vh] ' : ' '
-	}`}}
+	}`}
 >
 	<div
-		class="relative overflow-hidden drop-shadow-lg transition-all duration-300"
-		style="width: {caledWidth}}px; height: {caledHeight}}px;"
+		class="relative overflow-hidden drop-shadow-lg transition-all duration-300 "
+		style="width: {scaledWidth}px; height: {scaledHeight}px;"
 	>
 		<div
-			class="origin-center"
-			style="transform-origin: center center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale({osterScaling}});"
+			class="origin-center p-4"
+			style="transform-origin: center center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale({posterScaling});"
 		>
-			<Poster width={ize.x}} height={ize.y}}></Poster>
+			<Poster width={size.x} height={size.y} />
 		</div>
 	</div>
 </div>
