@@ -49,21 +49,21 @@
 </script>
 
 <!-- Navigation Buttons -->
-<div class="mb-4 hidden flex-col gap-2 sm:flex">
+<div class="mb-4 hidden flex-col gap-4 p-2 sm:flex">
 	<button
-		class="btn flex {activeTab === 'album' ? 'btn-primary' : 'btn-ghost'}"
+		class="btn btn-circle flex {activeTab === 'album' ? 'btn-primary' : 'btn-ghost'}"
 		on:click={() => setActiveTab('album')}
 	>
 		<Disc3 class="h-5 w-5" />
 	</button>
 	<button
-		class="btn {activeTab === 'tracks' ? 'btn-primary' : 'btn-ghost'}"
+		class="btn btn-circle {activeTab === 'tracks' ? 'btn-primary' : 'btn-ghost'}"
 		on:click={() => setActiveTab('tracks')}
 	>
 		<ListMusic class="h-5 w-5" />
 	</button>
 	<button
-		class="btn {activeTab === 'palette' ? 'btn-primary' : 'btn-ghost'}"
+		class="btn btn-circle {activeTab === 'palette' ? 'btn-primary' : 'btn-ghost'}"
 		on:click={() => setActiveTab('palette')}
 	>
 		<Palette class="h-5 w-5" />
