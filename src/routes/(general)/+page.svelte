@@ -1,5 +1,5 @@
 <script>
-	import { DiscAlbum, Music, Palette, ArrowRight } from 'lucide-svelte';
+	import { DiscAlbum, Music, Palette, ArrowRight, Search, PencilRuler } from 'lucide-svelte';
 	import emblaCarouselSvelte from 'embla-carousel-svelte';
 	import Autoplay from 'embla-carousel-autoplay';
 	import { featuredAlbums } from '$lib/data/featuredAlbums';
@@ -50,25 +50,33 @@
 	<section class="mx-4 grid gap-8 md:grid-cols-3">
 		<div class="card bg-base-200">
 			<div class="card-body items-center text-center">
-				<DiscAlbum class="h-12 w-12 text-primary" />
-				<h2 class="card-title">Album Details</h2>
-				<p>Import album artwork and customize title, artist, and release date information.</p>
+				<Music class="h-12 w-12 text-primary" />
+				<h2 class="card-title">Vast Library</h2>
+				<p>
+					Access millions of albums through Spotify's extensive music catalog to create your perfect
+					poster.
+				</p>
 			</div>
 		</div>
 
 		<div class="card bg-base-200">
 			<div class="card-body items-center text-center">
-				<Music class="h-12 w-12 text-primary" />
-				<h2 class="card-title">Track List</h2>
-				<p>Add and arrange your track list with full control over visibility and ordering.</p>
+				<PencilRuler class="h-12 w-12 text-primary" />
+				<h2 class="card-title">Customize</h2>
+				<p>
+					Customize album information, genre tags, and arrange your track list exactly how you want
+					it.
+				</p>
 			</div>
 		</div>
 
 		<div class="card bg-base-200">
 			<div class="card-body items-center text-center">
 				<Palette class="h-12 w-12 text-primary" />
-				<h2 class="card-title">Custom Themes</h2>
-				<p>Choose from a variety of color themes or create your own custom color palette.</p>
+				<h2 class="card-title">Theming</h2>
+				<p>
+					Choose from a variety of carefully crafted color themes to match your album's aesthetic.
+				</p>
 			</div>
 		</div>
 	</section>
