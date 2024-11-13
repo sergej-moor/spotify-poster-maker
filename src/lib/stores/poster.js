@@ -18,7 +18,27 @@ const DEFAULT_THEMES = [
 	{ name: 'Ocean', background: '#F0F8FF', foreground: '#4682B4' },
 	{ name: 'Sunset', background: '#FFF5E1', foreground: '#FF6B6B' },
 	{ name: 'Wine', background: '#2E1114', foreground: '#EA638C' },
-	{ name: 'Minimal', background: '#EEF2F7', foreground: '#1B1B1E' }
+	{ name: 'Minimal', background: '#EEF2F7', foreground: '#1B1B1E' },
+	{
+		name: 'Midnight Navy',
+		background: '#0A1929',
+		foreground: '#E6EDF3'
+	},
+	{
+		name: 'Dark Forest',
+		background: '#1A2F1C',
+		foreground: '#F0E6D2'
+	},
+	{
+		name: 'Royal Purple',
+		background: '#2D1B69',
+		foreground: '#FFD700'
+	},
+	{
+		name: 'Charcoal',
+		background: '#1C1C1C',
+		foreground: '#FFFFFF'
+	}
 ];
 
 /** @type {PosterStore} */
