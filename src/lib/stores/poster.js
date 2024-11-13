@@ -20,17 +20,17 @@ const DEFAULT_THEMES = [
 	{ name: 'Wine', background: '#2E1114', foreground: '#EA638C' },
 	{ name: 'Minimal', background: '#EEF2F7', foreground: '#1B1B1E' },
 	{
-		name: 'Midnight Navy',
+		name: 'Navy',
 		background: '#0A1929',
 		foreground: '#E6EDF3'
 	},
 	{
-		name: 'Dark Forest',
+		name: 'Forest',
 		background: '#1A2F1C',
 		foreground: '#F0E6D2'
 	},
 	{
-		name: 'Royal Purple',
+		name: 'Royal',
 		background: '#2D1B69',
 		foreground: '#FFD700'
 	},
