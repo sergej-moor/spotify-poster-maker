@@ -11,8 +11,8 @@ dotenv.config({ path: join(__dirname, '../.env') });
 
 const featuredAlbumIds = [
 	'3uFZf8rykoHo7XMIQVYW6r',
-	'50o7kf2wLwVmOTVYJOTplm',
 
+	'3p7WXDBxhC5KS9IFXnwae7',
 	'3mH6qwIy9crq0I9YQbOuDf',
 	'5zi7WsKlIiUXv09tbGLKsE',
 	'6DEjYFkNZh67HP7R9PSZvv',

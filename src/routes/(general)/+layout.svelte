@@ -33,10 +33,10 @@
 				<a class="flex items-center text-lg font-bold leading-[1]" href="/">
 					<DiscAlbum /> Postify
 				</a>
-				<!-- 	<p>Copyright © {new Date().getFullYear()} - No right reserved</p> -->
 			</aside>
 			<nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-				<a href="/imprint">Imprint</a>
+				<p>Copyright © {new Date().getFullYear()} - No rights reserved</p>
+				<!-- <a href="/imprint">Imprint</a> -->
 				<!-- <a href="/about">About</a> -->
 			</nav>
 		</div>
