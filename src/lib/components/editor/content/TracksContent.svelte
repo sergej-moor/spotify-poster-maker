@@ -19,7 +19,7 @@
 
 <div class="space-y-4">
 	<h2 class="text-xl font-bold">Track List</h2>
-	<div class="space-y-2">
+	<div class="max-h-[40vh] space-y-2 overflow-y-scroll">
 		{#each $posterStore.posterData.tracks as track, index}
 			<div class="flex items-center gap-2">
 				<span class="w-6">{(index + 1).toString().padStart(2, '0')}</span>

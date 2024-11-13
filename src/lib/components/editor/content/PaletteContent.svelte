@@ -14,7 +14,7 @@
 
 <div class="space-y-4">
 	<h2 class="text-xl font-bold">Color Palette</h2>
-	<div class="grid gap-2">
+	<div class="grid grid-cols-2 gap-2 sm:grid-cols-1">
 		{#each themes as theme}
 			<button
 				class="flex items-center gap-4 rounded-lg border p-2 hover:bg-gray-50"
