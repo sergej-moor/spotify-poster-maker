@@ -22,6 +22,10 @@
 	let previewData = null;
 	let loading = true;
 
+	let isDragging = false;
+	let startX = 0;
+	let startY = 0;
+
 	/**
 	 * @param {number} totalTracks
 	 * @returns {import('$lib/stores/poster').Track[]}
@@ -106,7 +110,29 @@
 	/**
 	 * @param {MouseEvent} event
 	 */
+	function handleMouseDown(event) {
+		isDragging = false;
+		startX = event.clientX;
+		startY = event.clientY;
+	}
+
+	/**
+	 * @param {MouseEvent} event
+	 */
+	function handleMouseMove(event) {
+		if (Math.abs(event.clientX - startX) > 5 || Math.abs(event.clientY - startY) > 5) {
+			isDragging = true;
+		}
+	}
+
+	/**
+	 * @param {MouseEvent} event
+	 */
 	function handleClick(event) {
+		if (isDragging) {
+			return;
+		}
+
 		if (previewData) {
 			posterStore.setTheme({
 				backgroundColor: theme.background,
@@ -126,7 +152,8 @@
 
 <button
 	on:click={handleClick}
-	on:mouseup={handleClick}
+	on:mousedown={handleMouseDown}
+	on:mousemove={handleMouseMove}
 	class="hover:scale-102 w-full transition-transform focus:outline-none"
 >
 	<div

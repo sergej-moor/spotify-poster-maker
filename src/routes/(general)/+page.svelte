@@ -29,7 +29,7 @@
 
 	<!-- Featured Posters Carousel -->
 	<section class=" w-screen overflow-hidden lg:w-auto">
-		<h2 class="mb-8 text-center text-3xl font-bold">Featured Posters</h2>
+		<!-- 	<h2 class="mb-8 text-center text-3xl font-bold">Featured Posters</h2> -->
 		<div
 			class="embla pl-4"
 			use:emblaCarouselSvelte={{ options: carouselOptions, plugins: carouselPlugins }}

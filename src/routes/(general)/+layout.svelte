@@ -36,11 +36,11 @@
 				<a class="flex items-center gap-2 font-bold leading-[1]" href="/">
 					<DiscAlbum />
 				</a>
-				<p>Copyright © {new Date().getFullYear()} - No right reserved</p>
+				<!-- 	<p>Copyright © {new Date().getFullYear()} - No right reserved</p> -->
 			</aside>
 			<nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
 				<a href="/imprint">Imprint</a>
-				<a href="/about">About</a>
+				<!-- <a href="/about">About</a> -->
 			</nav>
 		</div>
 	</footer>
