@@ -4,6 +4,7 @@
 	let { children } = $props();
 	import Search from 'lucide-svelte/icons/search';
 	import BottomMenu from '$lib/components/editor/BottomMenu.svelte';
+	import SideMenu from '$lib/components/editor/SideMenu.svelte';
 </script>
 
 <nav class="  border border-b-primary px-4 py-2 md:px-8 lg:px-16">
@@ -21,10 +22,11 @@
 	</div>
 </nav>
 
-<div class="flex justify-center">
+<div class="flex h-full justify-center">
+	<SideMenu />
 	<div class="mx-4 my-2 grow md:mx-8 lg:mx-auto lg:my-16 lg:max-w-6xl">
 		{@render children()}
 	</div>
 </div>
 
-<BottomMenu></BottomMenu>
+<BottomMenu />
