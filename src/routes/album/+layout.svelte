@@ -5,17 +5,15 @@
 	import BottomMenu from '$lib/components/editor/BottomMenu.svelte';
 	import SideMenu from '$lib/components/editor/SideMenu.svelte';
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
+	import { DiscAlbum } from 'lucide-svelte';
 </script>
 
 <div class="flex h-screen flex-col overflow-hidden">
 	<nav class="border border-b-primary px-4 py-2">
 		<div class="mx-auto flex items-center justify-between sm:mx-12">
-			<a class="block font-bold leading-[0.9] text-primary md:hidden" href="/">
-				Your <br />
-				Album <br />
-				Poster <br />
+			<a class=" flex items-center text-lg font-bold text-primary" href="/">
+				<DiscAlbum /> Postify
 			</a>
-			<a class="hidden text-lg font-bold text-primary md:block" href="/"> Your Album Poster </a>
 
 			<DownloadButton />
 		</div>

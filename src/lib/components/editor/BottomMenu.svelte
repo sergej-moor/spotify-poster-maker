@@ -5,7 +5,7 @@
 	import { drawerOpen } from '$lib/stores/drawer';
 
 	/** @type {'album' | 'tracks' | 'palette'} */
-	let activeTab = 'tracks';
+	let activeTab = 'album';
 
 	function setActiveTab(tab) {
 		activeTab = tab;

@@ -6,7 +6,7 @@
 	import TracksContent from './content/TracksContent.svelte';
 	import PaletteContent from './content/PaletteContent.svelte';
 	/** @type {'album' | 'tracks' | 'palette'} */
-	let activeTab = 'tracks';
+	let activeTab = 'album';
 
 	function setActiveTab(tab) {
 		activeTab = tab;
