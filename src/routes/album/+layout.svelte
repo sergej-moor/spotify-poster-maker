@@ -26,7 +26,7 @@
 	<div class="flex flex-1">
 		<SideMenu />
 		<div
-			class="mx-4 my-2 flex-1 self-center overflow-auto px-4 md:mx-8 lg:mx-auto lg:my-16 lg:max-w-6xl"
+			class="mx-4 my-2 mt-8 flex-1 overflow-auto px-4 sm:mt-0 sm:self-center md:mx-8 lg:mx-auto lg:my-16 lg:max-w-6xl"
 		>
 			{@render children()}
 		</div>
