@@ -14,9 +14,9 @@
 	$: featuredPosters = featuredAlbums.slice(0, 10); // Limit to 5 posters for better performance
 </script>
 
-<div class="flex flex-col gap-16 py-8 md:py-16">
+<div class=" flex flex-col gap-16 py-8 md:py-16">
 	<!-- Hero Section -->
-	<section class="text-center">
+	<section class="mx-4 text-center">
 		<h1 class="mb-4 text-4xl font-bold text-primary md:text-6xl">Create Beautiful Album Posters</h1>
 		<p class="mx-auto mb-8 max-w-2xl text-lg text-base-content/80">
 			Transform your favorite albums into stunning visual art. Create, customize, and download
@@ -28,10 +28,10 @@
 	</section>
 
 	<!-- Featured Posters Carousel -->
-	<section class="overflow-hidden">
+	<section class=" w-screen overflow-hidden lg:w-auto">
 		<h2 class="mb-8 text-center text-3xl font-bold">Featured Posters</h2>
 		<div
-			class="embla"
+			class="embla pl-4"
 			use:emblaCarouselSvelte={{ options: carouselOptions, plugins: carouselPlugins }}
 		>
 			<div class="embla__container">
@@ -47,7 +47,7 @@
 	</section>
 
 	<!-- Features Section -->
-	<section class="grid gap-8 md:grid-cols-3">
+	<section class="mx-4 grid gap-8 md:grid-cols-3">
 		<div class="card bg-base-200">
 			<div class="card-body items-center text-center">
 				<DiscAlbum class="h-12 w-12 text-primary" />
@@ -74,7 +74,7 @@
 	</section>
 
 	<!-- How It Works Section -->
-	<section class="text-center">
+	<section class="mx-4 text-center">
 		<h2 class="mb-8 text-3xl font-bold">How It Works</h2>
 		<div class="steps steps-vertical md:steps-horizontal">
 			<div class="step step-primary">Search for an album</div>
@@ -84,7 +84,7 @@
 	</section>
 
 	<!-- CTA Section -->
-	<section class="card bg-primary text-primary-content">
+	<section class="card mx-4 bg-primary text-primary-content">
 		<div class="card-body items-center text-center">
 			<h2 class="card-title text-2xl">Ready to Create Your Poster?</h2>
 			<p class="mb-4">Start designing your custom album poster now - it's free!</p>
@@ -113,7 +113,7 @@
 		padding-left: var(--slide-spacing);
 		position: relative;
 	}
-	@media (min-width: 768px) {
+	@media (min-width: 1224px) {
 		.embla {
 			--slide-size: 33.33%;
 		}
