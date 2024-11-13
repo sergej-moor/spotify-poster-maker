@@ -66,6 +66,14 @@ export function sanitizeTitle(title) {
 	// Final cleanup: normalize spaces and trim
 	sanitized = sanitized.replace(/\s+/g, ' ').trim();
 
+	// Check if sanitizing erased everything or left only whitespace
+	if (!sanitized || sanitized.length === 0) {
+		return {
+			sanitized: title,
+			changed: false
+		};
+	}
+
 	return {
 		sanitized,
 		changed: sanitized !== title
