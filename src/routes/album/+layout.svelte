@@ -23,9 +23,11 @@
 		</div>
 	</nav>
 
-	<div class="flex flex-1 overflow-hidden">
+	<div class="flex flex-1">
 		<SideMenu />
-		<div class="mx-4 my-2 flex-1 overflow-auto md:mx-8 lg:mx-auto lg:my-16 lg:max-w-6xl">
+		<div
+			class="mx-4 my-2 flex-1 self-center overflow-auto px-4 md:mx-8 lg:mx-auto lg:my-16 lg:max-w-6xl"
+		>
 			{@render children()}
 		</div>
 		<BottomMenu />
