@@ -14,9 +14,7 @@ const DEFAULT_THEMES = [
 	{ name: 'Vintage', background: '#F5F5DC', foreground: '#8B4513' },
 	{ name: 'Gold', background: '#1E1E1E', foreground: '#FFD700' },
 	{ name: 'Earth', background: '#FAF3E0', foreground: '#2F4F4F' },
-	{ name: 'Modern', background: '#2C3E50', foreground: '#E74C3C' },
-	{ name: 'Ocean', background: '#F0F8FF', foreground: '#4682B4' },
-	{ name: 'Sunset', background: '#FFF5E1', foreground: '#FF6B6B' },
+
 	{ name: 'Wine', background: '#2E1114', foreground: '#EA638C' },
 	{ name: 'Minimal', background: '#EEF2F7', foreground: '#1B1B1E' },
 	{
@@ -33,11 +31,6 @@ const DEFAULT_THEMES = [
 		name: 'Royal',
 		background: '#2D1B69',
 		foreground: '#FFD700'
-	},
-	{
-		name: 'Charcoal',
-		background: '#1C1C1C',
-		foreground: '#FFFFFF'
 	}
 ];
 

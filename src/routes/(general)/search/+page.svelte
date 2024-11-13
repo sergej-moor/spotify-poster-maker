@@ -17,7 +17,7 @@
 	let viewMode = 'grid';
 	/** @type {HTMLElement | null} */
 	let loadMoreTrigger;
-	const ITEMS_PER_PAGE = 6;
+	const ITEMS_PER_PAGE = 8;
 	let currentPage = 1;
 
 	/** @type {IntersectionObserver | null} */

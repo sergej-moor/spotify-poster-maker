@@ -10,16 +10,23 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: join(__dirname, '../.env') });
 
 const featuredAlbumIds = [
-	'4LH4d3cOWNNsVw41Gqt2kv',
-	'2fenSS68JI1h4Fo296JfGr',
+	'3uFZf8rykoHo7XMIQVYW6r',
+	'50o7kf2wLwVmOTVYJOTplm',
+
+	'3mH6qwIy9crq0I9YQbOuDf',
+	'5zi7WsKlIiUXv09tbGLKsE',
+	'6DEjYFkNZh67HP7R9PSZvv',
+	'31qVWUdRrlb8thMvts0yYL',
+	'287QQ922OsJYh8aFNGdJG5',
 	'6dVIqQ8qmQ5GBnJ9shOYGE',
-	'2widuo17g5CEC66IbzveRu',
+	'7aPolrSqVawIhC7iTo2b5F',
+	'2AxfZb5aQHIXgsB1HA6OLL',
+	'5TkaDC4mYSLBvdG6UrIB0v',
+	'4LH4d3cOWNNsVw41Gqt2kv',
+	'51HFfu3GhuXa4VUnlpJJy8',
 	'4m2880jivSbbyEGAKfITCa',
-	'3ycjBixZf7S3WpC5WZhhUn',
 	'2ANVost0y2y52ema1E9xAZ',
-	'4LxFDUxKxjZhLxhaSICflq',
-	'2ODvWsOgouMbaA5xf0RkJe',
-	'2v6ANhWhZBUKkg6pJJBs3B'
+	'0ETFjACtuP2ADo6LFhL6HN'
 ];
 
 async function getFeaturedAlbums() {
