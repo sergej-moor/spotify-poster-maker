@@ -37,10 +37,10 @@
 		>
 			<div class="flex-1 rounded-t-[10px] bg-white p-4">
 				<h2 class="mb-4 text-center text-xl font-bold">Color Palette</h2>
-				<section data-vaul-no-drag class="grid grid-cols-2 gap-4 rounded-lg p-4">
+				<section data-vaul-no-drag class="grid grid-cols-2 gap-2 rounded-lg p-4">
 					{#each themes as theme}
 						<button
-							class="flex items-center gap-4 rounded-lg border p-3 hover:bg-gray-50"
+							class="flex items-center gap-4 rounded-lg border p-2 hover:bg-gray-50"
 							style="background-color: {theme.background}; color: {theme.foreground}; border-color: {theme.foreground}"
 							on:click={() => selectTheme(theme)}
 						>

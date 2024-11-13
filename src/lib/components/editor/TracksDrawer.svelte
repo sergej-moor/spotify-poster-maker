@@ -42,7 +42,7 @@
 		>
 			<div class="flex-1 rounded-t-[10px] bg-white p-4">
 				<h2 class="mb-4 text-center text-xl font-bold">Track List</h2>
-				<section class="grid max-h-[50vh] scroll-m-2 gap-4 overflow-y-scroll rounded-lg p-4">
+				<section class="grid max-h-[40vh] scroll-m-2 gap-4 overflow-y-scroll rounded-lg p-4">
 					{#each $posterStore.posterData.tracks as track, index}
 						<div class="flex items-center">
 							<label class=" flex w-full items-center gap-2">
@@ -53,6 +53,8 @@
 									class="input input-sm input-bordered w-full"
 									value={track.name}
 									on:input={(e) => updateTrackName(index, e.target.value)}
+									autofocus="false"
+									tabindex="-1"
 								/>
 							</label>
 							<button class="btn btn-ghost btn-sm" on:click={() => toggleTrackVisibility(index)}>

@@ -37,7 +37,7 @@
 		>
 			<div class="flex-1 rounded-t-[10px] bg-white p-4">
 				<h2 class="mb-4 text-center text-xl font-bold">Album Settings</h2>
-				<section class="grid gap-4 rounded-lg p-4">
+				<section class="grid rounded-lg p-4">
 					<label class="form-control w-full">
 						<div class="label">
 							<span class="label-text">Album Title</span>
@@ -47,6 +47,8 @@
 							class="input input-sm input-bordered w-full"
 							value={title}
 							on:input={(e) => updateField('title', e.target.value)}
+							autofocus="false"
+							tabindex="-1"
 						/>
 					</label>
 
@@ -59,6 +61,8 @@
 							class="input input-sm input-bordered w-full"
 							value={artist}
 							on:input={(e) => updateField('artist', e.target.value)}
+							autofocus="false"
+							tabindex="-1"
 						/>
 					</label>
 
@@ -71,6 +75,8 @@
 							class="input input-sm input-bordered w-full"
 							value={releaseDate}
 							on:input={(e) => updateField('releaseDate', e.target.value)}
+							autofocus="false"
+							tabindex="-1"
 						/>
 					</label>
 
@@ -83,6 +89,8 @@
 							class="input input-sm input-bordered w-full"
 							value={genre}
 							on:input={(e) => updateField('genre', e.target.value)}
+							autofocus="false"
+							tabindex="-1"
 						/>
 					</label>
 				</section>
