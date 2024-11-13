@@ -59,11 +59,11 @@
 </script>
 
 <button
-	class="btn btn-circle btn-ghost"
+	class="btn btn-ghost flex items-center text-lg"
 	on:click={createPoster}
 	disabled={isCreatingPoster}
 	aria-label="Download poster"
->
+	><span class="hidden sm:block">Download</span>
 	{#if isCreatingPoster}
 		<LoaderCircle class="h-6 w-6 animate-spin" />
 	{:else}

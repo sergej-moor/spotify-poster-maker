@@ -8,14 +8,14 @@
 </script>
 
 <div class="flex h-screen flex-col overflow-hidden">
-	<nav class="border border-b-primary px-4 py-2 md:px-8">
-		<div class="mx-auto flex items-center justify-between lg:max-w-6xl">
-			<a class="block font-bold leading-[0.9] text-primary lg:hidden" href="/">
+	<nav class="border border-b-primary px-4 py-2">
+		<div class="mx-auto flex items-center justify-between sm:mx-12">
+			<a class="block font-bold leading-[0.9] text-primary md:hidden" href="/">
 				Your <br />
 				Album <br />
 				Poster <br />
 			</a>
-			<a class="hidden text-lg font-bold text-primary lg:block" href="/"> Your Album Poster </a>
+			<a class="hidden text-lg font-bold text-primary md:block" href="/"> Your Album Poster </a>
 
 			<DownloadButton />
 		</div>
@@ -24,7 +24,7 @@
 	<div class="flex flex-1">
 		<SideMenu />
 		<div
-			class="mx-4 my-2 mt-8 flex-1 overflow-auto px-4 sm:mt-0 sm:self-center md:mx-8 lg:mx-auto lg:my-16 lg:max-w-6xl"
+			class="mx-4 my-2 mt-8 flex-1 overflow-auto px-4 sm:mt-0 sm:self-center md:mx-8 lg:mx-auto lg:max-w-6xl"
 		>
 			{@render children()}
 		</div>
