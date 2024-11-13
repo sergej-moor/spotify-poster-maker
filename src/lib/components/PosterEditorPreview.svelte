@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import Poster from './Poster.svelte';
 	import { posterStore } from '$lib/stores/poster';
-
+	import { drawerOpen } from '$lib/stores/drawer';
 	/** @type {HTMLElement} */
 	let container;
 	/** @type {number} */
@@ -13,13 +13,24 @@
 	function updateScale() {
 		if (container) {
 			const containerWidth = container.parentElement?.clientWidth || window.innerWidth;
+		
+			const availableHeight = $drawerOpen ? window.innerHeight * 0.3 : window.innerHeight * 0.9;
 
-			posterScaling = containerWidth / size.x;
+			const widthScale = containerWidth / size.x;
+			const heightScale = availableHeight / size.y;
+
+			posterScaling = Math.min(widthScale, heightScale);
+	
 		}
 	}
 
 	$: scaledWidth = Math.round(size.x * posterScaling);
+
 	$: scaledHeight = Math.round(size.y * posterScaling);
+
+	$: if ($drawerOpen !== undefined) {
+		setTimeout(updateScale, 0);
+	}
 
 	onMount(() => {
 		updateScale();
@@ -30,10 +41,19 @@
 
 <div
 	bind:this={container}
-	class="overflow-hidden drop-shadow-lg"
-	style="width: {scaledWidth}px; height: {scaledHeight}px;"
+	class={` flex w-full items-start justify-center  ${
+		$drawerOpen ? 'h-[35vh] ' : ' '
+	}`}
 >
-	<div style="transform: scale({posterScaling}); transform-origin: top left;">
-		<Poster width={size.x} height={size.y} />
+	<div
+		class="relative overflow-hidden drop-shadow-lg transition-all duration-300"
+		style="width: {scaledWidth}px; height: {scaledHeight}px;"
+	>
+		<div
+			class="origin-center"
+			style="transform-origin: center center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale({posterScaling});"
+		>
+			<Poster width={size.x} height={size.y} />
+		</div>
 	</div>
 </div>

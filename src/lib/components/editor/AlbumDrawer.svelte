@@ -6,17 +6,21 @@
 
 	const dispatch = createEventDispatcher();
 
-	let title = $posterStore.posterData.title;
-	let artist = $posterStore.posterData.artist;
-	let releaseDate = $posterStore.posterData.releaseDate;
-	let genre = $posterStore.posterData.genre;
+	$: title = $posterStore.posterData.title;
+	$: artist = $posterStore.posterData.artist;
+	$: releaseDate = $posterStore.posterData.releaseDate;
+	$: genre = $posterStore.posterData.genre;
 
 	function updateField(field, value) {
 		posterStore.updatePosterData({ [field]: value });
 	}
+
+	function handleOpenChange(isOpen) {
+		dispatch('openChange', isOpen);
+	}
 </script>
 
-<Drawer.Root>
+<Drawer.Root onOpenChange={handleOpenChange}>
 	<Drawer.Trigger
 		class={`btm-nav-item ${$$props.isActive ? 'active' : ''}`}
 		on:click={() => dispatch('click')}
@@ -27,64 +31,60 @@
 		</div>
 	</Drawer.Trigger>
 	<Drawer.Portal>
-		<Drawer.Overlay class="fixed inset-0 bg-black/40" />
+		<Drawer.Overlay />
 		<Drawer.Content
-			class="fixed bottom-0 left-0 right-0 mt-24 flex h-full max-h-[90%] flex-col rounded-t-[10px] bg-gray-100"
+			class="fixed bottom-0 left-0 right-0 mt-24 flex h-full max-h-fit  flex-col rounded-t-[10px] bg-gray-100"
 		>
 			<div class="flex-1 rounded-t-[10px] bg-white p-4">
-				<h2 class="mb-4 text-xl font-bold">Album Settings</h2>
-				<section data-vaul-no-drag class="grid gap-4 rounded-lg bg-gray-100 p-4">
-					<div class="form-control w-full">
-						<label class="label" for="title">
+				<h2 class="mb-4 text-center text-xl font-bold">Album Settings</h2>
+				<section class="grid gap-4 rounded-lg p-4">
+					<label class="form-control w-full">
+						<div class="label">
 							<span class="label-text">Album Title</span>
-						</label>
+						</div>
 						<input
 							type="text"
-							id="title"
-							class="input input-bordered w-full"
+							class="input input-sm input-bordered w-full"
 							value={title}
 							on:input={(e) => updateField('title', e.target.value)}
 						/>
-					</div>
+					</label>
 
-					<div class="form-control w-full">
-						<label class="label" for="artist">
+					<label class="form-control w-full">
+						<div class="label">
 							<span class="label-text">Artist</span>
-						</label>
+						</div>
 						<input
 							type="text"
-							id="artist"
-							class="input input-bordered w-full"
+							class="input input-sm input-bordered w-full"
 							value={artist}
 							on:input={(e) => updateField('artist', e.target.value)}
 						/>
-					</div>
+					</label>
 
-					<div class="form-control w-full">
-						<label class="label" for="releaseDate">
+					<label class="form-control w-full">
+						<div class="label">
 							<span class="label-text">Release Date</span>
-						</label>
+						</div>
 						<input
 							type="date"
-							id="releaseDate"
-							class="input input-bordered w-full"
+							class="input input-sm input-bordered w-full"
 							value={releaseDate}
 							on:input={(e) => updateField('releaseDate', e.target.value)}
 						/>
-					</div>
+					</label>
 
-					<div class="form-control w-full">
-						<label class="label" for="genre">
+					<label class="form-control w-full">
+						<div class="label">
 							<span class="label-text">Genre</span>
-						</label>
+						</div>
 						<input
 							type="text"
-							id="genre"
-							class="input input-bordered w-full"
+							class="input input-sm input-bordered w-full"
 							value={genre}
 							on:input={(e) => updateField('genre', e.target.value)}
 						/>
-					</div>
+					</label>
 				</section>
 			</div>
 		</Drawer.Content>

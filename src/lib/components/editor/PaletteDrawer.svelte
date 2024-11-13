@@ -14,9 +14,13 @@
 			foregroundColor: theme.foreground
 		});
 	}
+
+	function handleOpenChange(isOpen) {
+		dispatch('openChange', isOpen);
+	}
 </script>
 
-<Drawer.Root>
+<Drawer.Root onOpenChange={handleOpenChange}>
 	<Drawer.Trigger
 		class={`btm-nav-item ${$$props.isActive ? 'active' : ''}`}
 		on:click={() => dispatch('click')}
@@ -27,16 +31,16 @@
 		</div>
 	</Drawer.Trigger>
 	<Drawer.Portal>
-		<Drawer.Overlay class="fixed inset-0 bg-black/40" />
+		<Drawer.Overlay />
 		<Drawer.Content
-			class="fixed bottom-0 left-0 right-0 mt-24 flex h-full max-h-[90%] flex-col rounded-t-[10px] bg-gray-100"
+			class="fixed bottom-0 left-0 right-0 mt-24 flex h-full max-h-fit flex-col rounded-t-[10px] bg-gray-100"
 		>
 			<div class="flex-1 rounded-t-[10px] bg-white p-4">
-				<h2 class="mb-4 text-xl font-bold">Color Palette</h2>
-				<section data-vaul-no-drag class="grid grid-cols-2 gap-4 rounded-lg bg-gray-100 p-4">
+				<h2 class="mb-4 text-center text-xl font-bold">Color Palette</h2>
+				<section data-vaul-no-drag class="grid grid-cols-2 gap-4 rounded-lg p-4">
 					{#each themes as theme}
 						<button
-							class="flex items-center gap-4 rounded-lg border p-4 hover:bg-gray-50"
+							class="flex items-center gap-4 rounded-lg border p-3 hover:bg-gray-50"
 							style="background-color: {theme.background}; color: {theme.foreground}; border-color: {theme.foreground}"
 							on:click={() => selectTheme(theme)}
 						>
