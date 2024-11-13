@@ -45,6 +45,8 @@
 		"axios": "^1.7.7",
 		"colorthief": "^2.6.0",
 		"dotenv": "^16.4.5",
+		"embla-carousel-autoplay": "^8.3.1",
+		"embla-carousel-svelte": "^8.3.1",
 		"html-to-image": "^1.11.11",
 		"lucide-svelte": "^0.456.0",
 		"vaul-svelte": "^0.3.2"

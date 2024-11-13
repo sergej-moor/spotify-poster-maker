@@ -1,5 +1,17 @@
 <script>
 	import { DiscAlbum, Music, Palette, ArrowRight } from 'lucide-svelte';
+	import emblaCarouselSvelte from 'embla-carousel-svelte';
+	import Autoplay from 'embla-carousel-autoplay';
+	import { featuredAlbums } from '$lib/data/featuredAlbums';
+	import { onMount } from 'svelte';
+	import Poster from '$lib/components/Poster.svelte';
+	import PosterSearchResult from '$lib/components/PosterSearchResult.svelte';
+
+	const carouselOptions = { loop: true };
+	const carouselPlugins = [Autoplay({ delay: 2000, stopOnInteraction: false })];
+
+	// Prepare featured albums for display
+	$: featuredPosters = featuredAlbums.slice(0, 10); // Limit to 5 posters for better performance
 </script>
 
 <div class="flex flex-col gap-16 py-8 md:py-16">
@@ -13,6 +25,25 @@
 		<a href="/search" class="btn btn-primary btn-lg gap-2">
 			Start Creating <ArrowRight class="h-5 w-5" />
 		</a>
+	</section>
+
+	<!-- Featured Posters Carousel -->
+	<section class="overflow-hidden">
+		<h2 class="mb-8 text-center text-3xl font-bold">Featured Posters</h2>
+		<div
+			class="embla"
+			use:emblaCarouselSvelte={{ options: carouselOptions, plugins: carouselPlugins }}
+		>
+			<div class="embla__container">
+				{#each featuredPosters as album}
+					<div class="embla__slide px-4">
+						<div class="relative mx-auto aspect-[1/1.4] w-full max-w-sm">
+							<PosterSearchResult {album} viewMode="list" />
+						</div>
+					</div>
+				{/each}
+			</div>
+		</div>
 	</section>
 
 	<!-- Features Section -->
@@ -63,3 +94,28 @@
 		</div>
 	</section>
 </div>
+
+<style>
+	.embla {
+		--slide-spacing: 1rem;
+		--slide-size: 100%;
+		--slide-height: auto;
+	}
+	.embla__container {
+		backface-visibility: hidden;
+		display: flex;
+		touch-action: pan-y;
+		margin-left: calc(var(--slide-spacing) * -1);
+	}
+	.embla__slide {
+		flex: 0 0 var(--slide-size);
+		min-width: 0;
+		padding-left: var(--slide-spacing);
+		position: relative;
+	}
+	@media (min-width: 768px) {
+		.embla {
+			--slide-size: 33.33%;
+		}
+	}
+</style>
