@@ -33,7 +33,7 @@
 				<DiscAlbum /> Postify
 			</a>
 
-			<p>Copyright © {new Date().getFullYear()} - No rights reserved</p>
+			<p>© {new Date().getFullYear()}</p>
 			<a target="_blank" href="https://github.com/sergej-moor/spotify-poster-maker"><Github /></a>
 			<!-- <a href="/imprint">Imprint</a> -->
 			<!-- <a href="/about">About</a> -->
