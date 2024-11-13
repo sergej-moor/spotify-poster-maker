@@ -1,10 +1,10 @@
 <script>
-	import { Disc3, DiscAlbum, Download, ListMusic, Palette } from 'lucide-svelte';
 	import '../../app.css';
 	let { children } = $props();
 	import Search from 'lucide-svelte/icons/search';
 	import BottomMenu from '$lib/components/editor/BottomMenu.svelte';
 	import SideMenu from '$lib/components/editor/SideMenu.svelte';
+	import DownloadButton from '$lib/components/DownloadButton.svelte';
 </script>
 
 <div class="flex h-screen flex-col overflow-hidden">
@@ -17,9 +17,7 @@
 			</a>
 			<a class="hidden text-lg font-bold text-primary lg:block" href="/"> Your Album Poster </a>
 
-			<button>
-				<Download />
-			</button>
+			<DownloadButton />
 		</div>
 	</nav>
 

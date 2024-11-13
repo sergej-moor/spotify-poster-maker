@@ -34,7 +34,7 @@
 
 <div
 	id="poster"
-	class="font-oswald flex h-full w-full select-none flex-col justify-between border border-black p-24"
+	class="flex h-full w-full select-none flex-col justify-between p-24 font-oswald"
 	style="
 		width: {width}px; 
 		height: {height}px;
